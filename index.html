@@ -1,0 +1,465 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RideFix · Your Road. Your Ride. We've Got You.</title>
+<meta name="description" content="RideFix connects drivers in Sri Lanka with nearby garages and mechanics. Request help in one tap, get offers, and help is on the way. Coming soon.">
+<meta property="og:title" content="RideFix · Coming soon">
+<meta property="og:description" content="Vehicle trouble? RideFix connects you with nearby garages in one tap.">
+<meta property="og:image" content="og-image.png">
+<meta name="theme-color" content="#1A1D24">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+Sinhala:wght@400;600;800&display=swap">
+<style>
+:root{
+  --amber:#FBBA00; --coral:#FF6B3D; --bg:#1A1D24; --ink:#14161A; --panel:#232733; --lane:#262B36; --muted:#B8BDC7; --white:#FFFFFF;
+  --max:1200px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;overflow-x:hidden}
+body{margin:0;background:var(--bg);color:var(--white);font-family:'Space Grotesk','Noto Sans Sinhala',system-ui,sans-serif;line-height:1.5;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+html[lang="si"] body{font-family:'Noto Sans Sinhala','Space Grotesk',system-ui,sans-serif}
+a{color:inherit}
+img,svg{display:block}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 24px}
+.btn{display:inline-flex;align-items:center;gap:10px;border-radius:999px;padding:16px 28px;font-weight:700;font-size:18px;text-decoration:none;border:2px solid transparent;transition:transform .2s,box-shadow .2s,background .2s;cursor:pointer;font-family:inherit}
+.btn:hover{transform:translateY(-2px)}
+.btn-amber{background:var(--amber);color:var(--ink);box-shadow:0 10px 40px rgba(251,186,0,.25)}
+.btn-amber:hover{box-shadow:0 14px 50px rgba(251,186,0,.4)}
+.btn-ghost{border-color:var(--amber);color:var(--amber)}
+.btn-dark{background:var(--ink);color:var(--amber)}
+.pill{display:inline-block;border:2px solid var(--amber);color:var(--amber);border-radius:999px;padding:8px 18px;font-weight:700;font-size:14px;letter-spacing:3px}
+html[lang="si"] .pill{letter-spacing:0}
+.eyebrow{color:var(--coral);font-weight:700;letter-spacing:3px;font-size:14px;text-transform:uppercase}
+html[lang="si"] .eyebrow{letter-spacing:0}
+h1,h2,h3{margin:0;line-height:1.05;letter-spacing:-.02em}
+html[lang="si"] h1,html[lang="si"] h2,html[lang="si"] h3{line-height:1.25;letter-spacing:0}
+
+/* nav */
+nav{position:fixed;inset:0 0 auto 0;z-index:20;transition:background .3s,backdrop-filter .3s}
+nav.scrolled{background:rgba(20,22,26,.85);backdrop-filter:blur(10px)}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:76px}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:700;font-size:26px;letter-spacing:-.5px;font-family:'Space Grotesk',sans-serif}
+.brand b{color:var(--amber)}
+.nav-links{display:flex;align-items:center;gap:28px}
+.nav-links a{text-decoration:none;color:var(--muted);font-weight:500}
+.nav-links a:hover{color:var(--white)}
+.nav-links a.btn{color:var(--ink)}
+.nav-links a.btn:hover{color:var(--ink)}
+.lang{display:flex;border:1px solid #3A3F4B;border-radius:999px;overflow:hidden}
+.lang button{background:none;border:0;color:var(--muted);padding:6px 12px;font:600 14px 'Space Grotesk','Noto Sans Sinhala',sans-serif;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--amber);color:var(--ink)}
+.nav-cta{padding:10px 20px;font-size:15px}
+
+/* hero */
+.hero{position:relative;min-height:100vh;display:flex;align-items:center;padding:120px 0 80px;overflow:hidden}
+.hero-bg{position:absolute;inset:0;pointer-events:none}
+.road{fill:none;stroke:var(--lane);stroke-width:120}
+.road-dash{fill:none;stroke:var(--amber);stroke-opacity:.75;stroke-width:6;stroke-dasharray:40 34;animation:drive 3s linear infinite}
+@keyframes drive{to{stroke-dashoffset:-74}}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;position:relative}
+.hero h1{font-size:clamp(56px,8vw,112px);font-weight:700;margin:24px 0 18px}
+.hero h1 .hot{color:var(--coral);position:relative;display:inline-block}
+.zig{position:absolute;left:0;right:0;bottom:-.12em;width:100%;height:.22em}
+.zig path{stroke-dasharray:900;stroke-dashoffset:900;animation:draw 1s ease-out .6s forwards}
+@keyframes draw{to{stroke-dashoffset:0}}
+.hero .sub{font-size:clamp(24px,2.6vw,34px);color:var(--amber);font-weight:500;margin:0 0 14px}
+.hero .lead{font-size:19px;color:var(--muted);max-width:520px;margin:0 0 32px}
+.cta-row{display:flex;flex-wrap:wrap;gap:14px}
+.rise{opacity:0;transform:translateY(24px);animation:rise .7s cubic-bezier(.2,.8,.3,1) forwards}
+@keyframes rise{to{opacity:1;transform:none}}
+
+/* phone */
+.phone-wrap{position:relative;display:flex;justify-content:center}
+.halo{position:absolute;width:520px;height:520px;border-radius:50%;background:var(--amber);top:50%;left:50%;transform:translate(-50%,-50%)}
+.halo-ring{position:absolute;width:590px;height:590px;border-radius:50%;border:3px dashed var(--coral);top:50%;left:50%;transform:translate(-50%,-50%);opacity:.6;animation:spin 40s linear infinite}
+@keyframes spin{to{transform:translate(-50%,-50%) rotate(360deg)}}
+.phone{position:relative;width:300px;height:610px;border-radius:46px;background:#2A2E38;padding:12px;box-shadow:0 40px 80px rgba(0,0,0,.45);transform:rotate(-4deg)}
+.screen{position:relative;width:100%;height:100%;border-radius:36px;background:var(--bg);overflow:hidden}
+.map{position:absolute;inset:0}
+.screen-top{position:absolute;top:22px;left:0;right:0;text-align:center;font-weight:700;font-size:15px;font-family:'Space Grotesk',sans-serif}
+.screen-top b{color:var(--amber)}
+.offers{position:absolute;left:12px;right:12px;bottom:14px;display:flex;flex-direction:column;gap:8px}
+.offer{display:flex;align-items:center;gap:10px;background:var(--panel);border-radius:14px;padding:10px 12px;font-size:13px;opacity:0;transform:translateX(40px);animation:slidein .5s cubic-bezier(.2,.8,.3,1) forwards}
+.offer .dot{width:28px;height:28px;border-radius:50%;background:var(--coral);flex-shrink:0;display:flex;align-items:center;justify-content:center}
+.offer b{display:block;font-size:13px}
+.offer small{color:var(--muted);font-size:11px}
+.offer .pr{margin-left:auto;text-align:right;font-weight:700}
+.offer.pick{animation:slidein .5s cubic-bezier(.2,.8,.3,1) forwards,pick .4s ease-out 3.2s forwards}
+@keyframes slidein{to{opacity:1;transform:none}}
+@keyframes pick{to{background:var(--amber);color:var(--ink)}}
+.offer.pick small{color:inherit;opacity:.75}
+.eta{position:absolute;left:50%;top:205px;transform:translateX(-50%) scale(0);background:var(--coral);color:var(--ink);font-weight:700;font-size:13px;padding:8px 14px;border-radius:999px;white-space:nowrap;animation:pop .45s cubic-bezier(.3,.7,.3,1.4) 4.6s forwards}
+@keyframes pop{to{transform:translateX(-50%) scale(1)}}
+.route{stroke-dasharray:100;stroke-dashoffset:100;animation:draw 1.3s ease-in-out 3.4s forwards}
+.pulse{transform-origin:150px 190px;animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{transform:scale(.5);opacity:.9}100%{transform:scale(2.4);opacity:0}}
+
+/* marquee */
+.marquee{background:var(--amber);color:var(--ink);overflow:hidden;white-space:nowrap;padding:18px 0;font-weight:700;font-size:26px;transform:rotate(-1.5deg);margin:0 -20px;position:relative;z-index:2}
+.marquee-track{display:inline-flex;gap:40px;animation:marq 22s linear infinite;font-family:'Space Grotesk','Noto Sans Sinhala',sans-serif}
+.marquee-track span{display:inline-flex;align-items:center;gap:40px}
+.marquee-track i{width:12px;height:12px;border-radius:50%;background:var(--coral);display:inline-block}
+@keyframes marq{to{transform:translateX(-50%)}}
+
+/* sections */
+section{position:relative}
+.sec{padding:120px 0}
+.sec-head{max-width:720px;margin-bottom:64px}
+.sec-head h2{font-size:clamp(40px,5vw,64px);margin-top:14px}
+.sec-head p{color:var(--muted);font-size:19px;margin:18px 0 0}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;position:relative}
+.steps-line{position:absolute;left:8%;right:8%;top:58px;height:4px;background:repeating-linear-gradient(90deg,var(--amber) 0 28px,transparent 28px 52px);opacity:.5}
+.step{position:relative;background:var(--panel);border-radius:28px;padding:36px 30px 34px;transition:transform .3s,background .3s}
+.step:hover{transform:translateY(-6px)}
+.step .num{width:72px;height:72px;border-radius:50%;background:var(--bg);border:3px solid var(--amber);color:var(--amber);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:28px;margin-bottom:26px;position:relative;font-family:'Space Grotesk',sans-serif}
+.step:nth-child(3) .num{border-color:var(--coral);color:var(--coral)}
+.step h3{font-size:28px;margin-bottom:10px}
+.step p{color:var(--muted);margin:0;font-size:17px}
+.step .ic{position:absolute;right:28px;top:36px;opacity:.9}
+
+/* split */
+.split{display:grid;grid-template-columns:1fr 1fr;border-radius:40px;overflow:hidden;min-height:520px}
+.side{padding:64px 56px;position:relative;overflow:hidden}
+.side.drivers{background:var(--panel)}
+.side.garages{background:var(--amber);color:var(--ink)}
+.side h3{font-size:clamp(34px,3.6vw,48px);margin:16px 0 28px}
+.side ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:18px}
+.side li{display:flex;gap:14px;font-size:18px;align-items:flex-start}
+.side li svg{flex-shrink:0;margin-top:3px}
+.side .tag{display:inline-block;font-weight:700;font-size:14px;letter-spacing:3px;padding:6px 14px;border-radius:999px;background:var(--bg);color:var(--amber)}
+.side.garages .tag{background:var(--ink)}
+html[lang="si"] .side .tag{letter-spacing:0}
+.side .big-r{position:absolute;right:-60px;bottom:-70px;opacity:.12}
+.side.garages .btn{margin-top:34px}
+
+/* waitlist */
+.wait{padding:120px 0 140px;text-align:center;overflow:hidden}
+.wait-circle{position:absolute;width:900px;height:900px;border-radius:50%;left:50%;top:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,107,61,.18),transparent 60%)}
+.wait h2{font-size:clamp(48px,7vw,96px);position:relative}
+.wait h2 span{color:var(--amber)}
+.wait p{color:var(--muted);font-size:20px;max-width:560px;margin:22px auto 36px;position:relative}
+.wait .cta-row{justify-content:center;position:relative}
+.count{display:flex;justify-content:center;gap:16px;margin-top:56px;position:relative}
+.count div{background:var(--panel);border-radius:18px;padding:16px 22px;min-width:120px}
+.count b{display:block;font-size:30px;color:var(--amber);font-family:'Space Grotesk',sans-serif}
+.count small{color:var(--muted)}
+
+/* footer */
+footer{background:var(--ink);padding:56px 0 40px}
+.foot{display:flex;flex-wrap:wrap;gap:30px;justify-content:space-between;align-items:center}
+.foot .tagline{font-weight:700;font-size:20px;margin-top:10px}
+.foot .tagline span{color:var(--amber)}
+.social{display:flex;gap:12px}
+.social a{width:48px;height:48px;border-radius:50%;background:var(--panel);display:flex;align-items:center;justify-content:center;transition:background .2s}
+.social a:hover{background:var(--amber)}
+.social a:hover svg{fill:var(--ink)}
+.social svg{fill:var(--white);width:20px;height:20px}
+.legal{display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;color:#6B7180;font-size:14px;margin-top:40px;border-top:1px solid #262B36;padding-top:24px}
+.legal .hash{color:var(--coral);font-weight:700}
+
+/* reveal on scroll */
+.reveal{opacity:0;transform:translateY(40px);transition:opacity .8s cubic-bezier(.2,.8,.3,1),transform .8s cubic-bezier(.2,.8,.3,1)}
+.reveal.on{opacity:1;transform:none}
+
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr}
+  .phone-wrap{margin-top:30px}
+  .halo{width:380px;height:380px}.halo-ring{width:440px;height:440px}
+  .steps{grid-template-columns:1fr}.steps-line{display:none}
+  .split{grid-template-columns:1fr}
+  .nav-links a.hide-m{display:none}
+}
+@media (max-width:560px){
+  .side{padding:44px 26px}
+  .nav-cta{display:none}
+  .count div{min-width:0;padding:14px 14px}
+  .marquee{font-size:20px}
+  .phone{width:260px;height:530px}
+  .halo{width:320px;height:320px}.halo-ring{width:360px;height:360px}
+}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="r-mark" viewBox="0 0 200 200">
+      <path d="M14 74 H36 M20 100 H40 M14 126 H32" fill="none" stroke="currentColor" stroke-width="10" stroke-linecap="round"/>
+      <g transform="translate(26 -4) skewX(-12)">
+        <path d="M62 150 V44 H104 A32 32 0 0 1 104 108 H62" fill="none" stroke="currentColor" stroke-width="30" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M96 108 L124 140" stroke="currentColor" stroke-width="30" stroke-linecap="round"/>
+        <path fill="currentColor" fill-rule="evenodd" d="M133 123 a28 28 0 1 0 0.01 0 Z M144.6 166.2 L157 180.4 L170.6 168.5 L150.8 145.9 A9 9 0 1 0 144.6 166.2 Z"/>
+      </g>
+    </symbol>
+    <symbol id="wrench" viewBox="0 0 24 24"><path fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></symbol>
+    <symbol id="check" viewBox="0 0 24 24"><circle cx="12" cy="12" r="11" fill="currentColor"/><path d="M7 12.5l3.2 3.2L17 9" fill="none" stroke="#1A1D24" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  </defs>
+</svg>
+
+<nav id="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top" aria-label="RideFix home">
+      <svg width="40" height="40" style="color:var(--amber)"><use href="#r-mark"/></svg>
+      <span>RIDE<b>FIX</b></span>
+    </a>
+    <div class="nav-links">
+      <a class="hide-m" href="#how" data-i18n="nav_how">How it works</a>
+      <a class="hide-m" href="#garages" data-i18n="nav_garages">For garages</a>
+      <div class="lang" role="group" aria-label="Language">
+        <button type="button" data-lang="en" aria-pressed="true">EN</button>
+        <button type="button" data-lang="si" aria-pressed="false">සිං</button>
+      </div>
+      <a class="btn btn-amber nav-cta waitlist-link" href="#waitlist" data-i18n="nav_cta">Join waitlist</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero" id="top">
+  <svg class="hero-bg" viewBox="0 0 1440 900" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+    <g fill="none" stroke="#20242C" stroke-width="3">
+      <path d="M760 0 L1440 620"/><path d="M1040 0 V700"/><path d="M560 190 H1440"/><path d="M0 760 L520 900"/><path d="M0 330 H260"/>
+    </g>
+    <path class="road" d="M-80 860 C 400 860, 820 600, 1520 330"/>
+    <path class="road-dash" d="M-80 860 C 400 860, 820 600, 1520 330"/>
+    <text x="1460" y="890" text-anchor="end" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="300" letter-spacing="-12" fill="none" stroke="#242833" stroke-width="3">SOON</text>
+  </svg>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill rise" style="animation-delay:.1s" data-i18n="pill">SOMETHING NEW IS COMING</span>
+      <h1 class="rise" style="animation-delay:.2s"><span data-i18n="h1a">Vehicle</span> <span class="hot"><span data-i18n="h1b">troubles?</span><svg class="zig" viewBox="0 0 400 26" preserveAspectRatio="none" aria-hidden="true"><path d="M2 14 L22 4 L42 22 L62 4 L82 22 L102 4 L122 22 L142 4 L162 22 L182 4 L202 22 L222 4 L242 22 L262 4 L282 22 L302 4 L322 22 L342 4 L362 22 L382 4 L398 14" fill="none" stroke="#FF6B3D" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/></svg></span></h1>
+      <p class="sub rise" style="animation-delay:.35s" data-i18n="sub">A smarter solution is on the way.</p>
+      <p class="lead rise" style="animation-delay:.45s" data-i18n="lead">RideFix connects drivers with nearby garages and mechanics. Ask for help in one tap, get offers in minutes, and get back on the road.</p>
+      <div class="cta-row rise" style="animation-delay:.55s">
+        <a class="btn btn-amber waitlist-link" href="#waitlist"><span data-i18n="cta1">Join the waitlist</span> →</a>
+        <a class="btn btn-ghost" href="#garages" data-i18n="cta2">I run a garage</a>
+      </div>
+    </div>
+
+    <div class="phone-wrap rise" style="animation-delay:.4s" aria-hidden="true">
+      <div class="halo"></div><div class="halo-ring"></div>
+      <div class="phone">
+        <div class="screen">
+          <svg class="map" viewBox="0 0 276 586" preserveAspectRatio="xMidYMid slice">
+            <rect width="276" height="586" fill="#1A1D24"/>
+            <g stroke="#232733" stroke-width="10" fill="none"><path d="M0 90 H276 M0 190 H276 M0 300 H276 M60 0 V586 M150 0 V586 M228 0 V586"/></g>
+            <path d="M-20 340 C 80 300, 160 160, 300 110" stroke="#262B36" stroke-width="22" fill="none"/>
+            <path d="M228 110 L228 150 L150 150 L150 190" pathLength="100" class="route" fill="none" stroke="#FBBA00" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+            <circle class="pulse" cx="150" cy="190" r="12" fill="none" stroke="#FBBA00" stroke-width="2"/>
+            <circle cx="150" cy="190" r="10" fill="#FBBA00"/><circle cx="150" cy="190" r="4" fill="#1A1D24"/>
+            <g fill="#FF6B3D"><path d="M60 92 c0 0 -12 -10 -12 -20 a12 12 0 0 1 24 0 c0 10 -12 20 -12 20z" opacity=".45"/><path d="M228 112 c0 0 -12 -10 -12 -20 a12 12 0 0 1 24 0 c0 10 -12 20 -12 20z"/><path d="M228 302 c0 0 -12 -10 -12 -20 a12 12 0 0 1 24 0 c0 10 -12 20 -12 20z" opacity=".45"/></g>
+          </svg>
+          <div class="screen-top">RIDE<b>FIX</b></div>
+          <div class="eta" data-i18n="eta">Help is on the way · 5 min</div>
+          <div class="offers">
+            <div class="offer" style="animation-delay:1.2s"><span class="dot"><svg width="15" height="15" style="color:#14161A"><use href="#wrench"/></svg></span><div><b>AutoCare</b><small>2.1 km</small></div><div class="pr">Rs 2,200<small style="display:block">12 min</small></div></div>
+            <div class="offer pick" style="animation-delay:1.6s"><span class="dot"><svg width="15" height="15" style="color:#14161A"><use href="#wrench"/></svg></span><div><b>QuickFix Garage</b><small>0.9 km</small></div><div class="pr">Rs 2,500<small style="display:block">5 min</small></div></div>
+            <div class="offer" style="animation-delay:2.0s"><span class="dot"><svg width="15" height="15" style="color:#14161A"><use href="#wrench"/></svg></span><div><b>City Motors</b><small>3.4 km</small></div><div class="pr">Rs 3,000<small style="display:block">15 min</small></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marq"></div>
+</div>
+
+<section class="sec" id="how">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="eyebrow" data-i18n="how_eye">How it works</span>
+      <h2 data-i18n="how_h">Help in three simple steps.</h2>
+      <p data-i18n="how_p">No more searching for numbers or calling garage after garage.</p>
+    </div>
+    <div class="steps">
+      <div class="steps-line" aria-hidden="true"></div>
+      <article class="step reveal">
+        <div class="num">01</div>
+        <h3 data-i18n="s1h">Tap for help</h3>
+        <p data-i18n="s1p">Tell us what happened. Your location is shared, so no need to explain where you are.</p>
+      </article>
+      <article class="step reveal" style="transition-delay:.12s">
+        <div class="num">02</div>
+        <h3 data-i18n="s2h">Get offers</h3>
+        <p data-i18n="s2p">Nearby garages and mechanics see your request and send their price and time.</p>
+      </article>
+      <article class="step reveal" style="transition-delay:.24s">
+        <div class="num">03</div>
+        <h3 data-i18n="s3h">Help is on the way</h3>
+        <p data-i18n="s3p">Pick the offer you like and follow them on the map until they arrive.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="garages" style="padding-top:20px">
+  <div class="wrap">
+    <div class="split reveal">
+      <div class="side drivers">
+        <span class="tag" data-i18n="dr_tag">FOR DRIVERS</span>
+        <h3 data-i18n="dr_h">Stuck? Not for long.</h3>
+        <ul>
+          <li><svg width="24" height="24" style="color:var(--amber)"><use href="#check"/></svg><span data-i18n="dr1">One tap to ask for help, day or night</span></li>
+          <li><svg width="24" height="24" style="color:var(--amber)"><use href="#check"/></svg><span data-i18n="dr2">Compare prices and times before you choose</span></li>
+          <li><svg width="24" height="24" style="color:var(--amber)"><use href="#check"/></svg><span data-i18n="dr3">See your mechanic coming on the map</span></li>
+          <li><svg width="24" height="24" style="color:var(--amber)"><use href="#check"/></svg><span data-i18n="dr4">Pay in cash when the job is done</span></li>
+        </ul>
+        <svg class="big-r" width="340" height="340" style="color:var(--amber)" aria-hidden="true"><use href="#r-mark"/></svg>
+      </div>
+      <div class="side garages">
+        <span class="tag" data-i18n="ga_tag">FOR GARAGES</span>
+        <h3 data-i18n="ga_h">New customers, right when they need you.</h3>
+        <ul>
+          <li><svg width="24" height="24" style="color:var(--ink)"><use href="#check"/></svg><span data-i18n="ga1">Get requests from drivers near you</span></li>
+          <li><svg width="24" height="24" style="color:var(--ink)"><use href="#check"/></svg><span data-i18n="ga2">Send your own price and arrival time</span></li>
+          <li><svg width="24" height="24" style="color:var(--ink)"><use href="#check"/></svg><span data-i18n="ga3">Turn on or off when you're available</span></li>
+        </ul>
+        <a class="btn btn-dark waitlist-link" href="#waitlist"><span data-i18n="ga_cta">Register your garage</span> →</a>
+        <svg class="big-r" width="340" height="340" style="color:var(--ink)" aria-hidden="true"><use href="#r-mark"/></svg>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="wait" id="waitlist">
+  <div class="wait-circle" aria-hidden="true"></div>
+  <div class="wrap reveal">
+    <span class="pill" data-i18n="pill2">COMING SOON</span>
+    <h2 style="margin-top:22px"><span data-i18n="w_h1">Be first</span><br><span data-i18n="w_h2">on the road.</span></h2>
+    <p data-i18n="w_p">Join the waitlist and get early access when RideFix launches in Sri Lanka.</p>
+    <div class="cta-row">
+      <a class="btn btn-amber waitlist-link" href="#" target="_blank" rel="noopener"><span data-i18n="cta1">Join the waitlist</span> →</a>
+    </div>
+    <div class="count" aria-label="Launch progress">
+      <div><b>01</b><small data-i18n="c1">Tap</small></div>
+      <div><b>3+</b><small data-i18n="c2">Offers</small></div>
+      <div><b>24/7</b><small data-i18n="c3">Help</small></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div>
+        <a class="brand" href="#top"><svg width="40" height="40" style="color:var(--amber)"><use href="#r-mark"/></svg><span>RIDE<b>FIX</b></span></a>
+        <div class="tagline">Your Road. Your Ride. <span>We've Got You.</span></div>
+      </div>
+      <div class="social">
+        <a id="fb-link" href="#" target="_blank" rel="noopener" aria-label="RideFix on Facebook"><svg viewBox="0 0 24 24"><path d="M14 8h3V4h-3c-2.8 0-5 2.2-5 5v2H7v4h2v9h4v-9h3l1-4h-4V9c0-.6.4-1 1-1z"/></svg></a>
+        <a id="li-link" href="https://www.linkedin.com/company/ridefixlk" target="_blank" rel="noopener" aria-label="RideFix on LinkedIn"><svg viewBox="0 0 24 24"><path d="M4.98 3.5a2.5 2.5 0 1 1 0 5 2.5 2.5 0 0 1 0-5zM3 9.5h4V21H3zM9.5 9.5h3.8v1.6h.1c.5-1 1.8-2 3.8-2 4 0 4.8 2.6 4.8 6V21h-4v-5.2c0-1.2 0-2.8-1.7-2.8s-2 1.3-2 2.7V21h-4z"/></svg></a>
+      </div>
+    </div>
+    <div class="legal"><span>© <span id="yr">2026</span> RideFix · Sri Lanka</span><span class="hash">#RideFixLK</span></div>
+  </div>
+</footer>
+
+<script>
+/* ===== Edit these links ===== */
+var WAITLIST_URL = "";   // paste your Google Form link here, e.g. "https://forms.gle/xxxx"
+var FACEBOOK_URL = "";   // paste your Facebook page link here
+/* ============================ */
+
+var T = {
+  en: {
+    nav_how:"How it works", nav_garages:"For garages", nav_cta:"Join waitlist",
+    pill:"SOMETHING NEW IS COMING", h1a:"Vehicle", h1b:"troubles?",
+    sub:"A smarter solution is on the way.",
+    lead:"RideFix connects drivers with nearby garages and mechanics. Ask for help in one tap, get offers in minutes, and get back on the road.",
+    cta1:"Join the waitlist", cta2:"I run a garage", eta:"Help is on the way · 5 min",
+    how_eye:"How it works", how_h:"Help in three simple steps.", how_p:"No more searching for numbers or calling garage after garage.",
+    s1h:"Tap for help", s1p:"Tell us what happened. Your location is shared, so no need to explain where you are.",
+    s2h:"Get offers", s2p:"Nearby garages and mechanics see your request and send their price and time.",
+    s3h:"Help is on the way", s3p:"Pick the offer you like and follow them on the map until they arrive.",
+    dr_tag:"FOR DRIVERS", dr_h:"Stuck? Not for long.",
+    dr1:"One tap to ask for help, day or night", dr2:"Compare prices and times before you choose", dr3:"See your mechanic coming on the map", dr4:"Pay in cash when the job is done",
+    ga_tag:"FOR GARAGES", ga_h:"New customers, right when they need you.",
+    ga1:"Get requests from drivers near you", ga2:"Send your own price and arrival time", ga3:"Turn on or off when you're available", ga_cta:"Register your garage",
+    pill2:"COMING SOON", w_h1:"Be first", w_h2:"on the road.", w_p:"Join the waitlist and get early access when RideFix launches in Sri Lanka.",
+    c1:"Tap", c2:"Offers", c3:"Help",
+    marquee:["COMING SOON","YOUR ROAD","YOUR RIDE","WE'VE GOT YOU"]
+  },
+  si: {
+    nav_how:"කොහොමද වැඩ කරන්නේ", nav_garages:"ගරාජ් සඳහා", nav_cta:"Waitlist එකට",
+    pill:"අලුත් දෙයක් එනවා", h1a:"වාහනේ", h1b:"අවුලක්ද?",
+    sub:"ස්මාර්ට් විසඳුමක් ළඟදීම.",
+    lead:"RideFix ඔබව ළඟම ඉන්න ගරාජ් සහ මෙකැනික්ලා එක්ක සම්බන්ධ කරනවා. එක ටැප් එකකින් උදව් ඉල්ලන්න, විනාඩි කිහිපයකින් offers ගන්න, ආයෙත් පාරට බහින්න.",
+    cta1:"Waitlist එකට එකතු වෙන්න", cta2:"මට ගරාජ් එකක් තියෙනවා", eta:"උදව් එනවා · විනාඩි 5",
+    how_eye:"කොහොමද වැඩ කරන්නේ", how_h:"පියවර තුනකින් උදව්.", how_p:"තවත් අංක හොයන්න, ගරාජ් එකින් එකට call කරන්න ඕනේ නෑ.",
+    s1h:"උදව් ඉල්ලන්න", s1p:"වුණේ මොකක්ද කියන්න. ඔබේ location එක share වෙන නිසා ඉන්න තැන කියන්න ඕනේ නෑ.",
+    s2h:"Offers ගන්න", s2p:"ළඟ ඉන්න ගරාජ් සහ මෙකැනික්ලා ඔබේ request එක දැකලා මිල සහ වෙලාව එවනවා.",
+    s3h:"උදව් එනවා", s3p:"කැමති offer එක තෝරලා, එයාලා එනකම් map එකේ බලාගෙන ඉන්න.",
+    dr_tag:"රියදුරන්ට", dr_h:"පාරේ හිරවුණාද? වැඩි වෙලාවකට නෙවෙයි.",
+    dr1:"දවල් හෝ රෑ, එක ටැප් එකකින් උදව්", dr2:"තෝරන්න කලින් මිල සහ වෙලාව සසඳන්න", dr3:"මෙකැනික් එන හැටි map එකේ බලන්න", dr4:"වැඩේ ඉවර වුණාම cash වලින් ගෙවන්න",
+    ga_tag:"ගරාජ් සඳහා", ga_h:"ඔබව ඕනේ වෙලාවටම අලුත් customers.",
+    ga1:"ළඟ ඉන්න රියදුරන්ගෙන් requests ගන්න", ga2:"ඔබේම මිල සහ එන වෙලාව යවන්න", ga3:"ඔබට පුළුවන් වෙලාවට විතරක් on කරන්න", ga_cta:"ඔබේ ගරාජ් එක register කරන්න",
+    pill2:"ළඟදීම", w_h1:"පාරට", w_h2:"මුලින්ම එන්න.", w_p:"Waitlist එකට එකතු වෙලා RideFix ලංකාවේ launch වෙද්දී මුලින්ම access ගන්න.",
+    c1:"ටැප්", c2:"Offers", c3:"උදව්",
+    marquee:["ළඟදීම","ඔබේ පාර","ඔබේ ගමන","අපි ඉන්නවා ඔබ එක්ක"]
+  }
+};
+
+function buildMarquee(words){
+  var html = "";
+  for (var r = 0; r < 2; r++) {
+    html += "<span>";
+    for (var k = 0; k < 3; k++) words.forEach(function (w) { html += w + " <i></i> "; });
+    html += "</span>";
+  }
+  document.getElementById("marq").innerHTML = html;
+}
+
+function setLang(l){
+  var d = T[l] || T.en;
+  document.documentElement.lang = l;
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    var k = el.getAttribute("data-i18n"); if (d[k]) el.textContent = d[k];
+  });
+  document.querySelectorAll(".lang button").forEach(function (b) {
+    b.setAttribute("aria-pressed", b.dataset.lang === l ? "true" : "false");
+  });
+  buildMarquee(d.marquee);
+  try { localStorage.setItem("ridefix-lang", l); } catch (e) {}
+}
+
+document.querySelectorAll(".lang button").forEach(function (b) {
+  b.addEventListener("click", function () { setLang(b.dataset.lang); });
+});
+var saved = "en";
+try { saved = localStorage.getItem("ridefix-lang") || "en"; } catch (e) {}
+setLang(saved);
+
+if (WAITLIST_URL) document.querySelectorAll(".waitlist-link").forEach(function (a) {
+  if (a.closest("#waitlist") || a.classList.contains("nav-cta") || a.closest(".hero") || a.closest(".garages")) { a.href = WAITLIST_URL; a.target = "_blank"; a.rel = "noopener"; }
+});
+if (!WAITLIST_URL) document.querySelector("#waitlist .waitlist-link").addEventListener("click", function (e) {
+  e.preventDefault(); alert("Waitlist opens soon. Follow our pages for updates!");
+});
+if (FACEBOOK_URL) document.getElementById("fb-link").href = FACEBOOK_URL;
+document.getElementById("yr").textContent = new Date().getFullYear();
+
+var nav = document.getElementById("nav");
+window.addEventListener("scroll", function () { nav.classList.toggle("scrolled", window.scrollY > 20); }, { passive: true });
+
+if ("IntersectionObserver" in window) {
+  var io = new IntersectionObserver(function (es) {
+    es.forEach(function (e) { if (e.isIntersecting) { e.target.classList.add("on"); io.unobserve(e.target); } });
+  }, { threshold: .15 });
+  document.querySelectorAll(".reveal").forEach(function (el) { io.observe(el); });
+} else {
+  document.querySelectorAll(".reveal").forEach(function (el) { el.classList.add("on"); });
+}
+</script>
+</body>
+</html>
